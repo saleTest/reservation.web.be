@@ -55,18 +55,22 @@ export class RestaurantService {
     return checkIfDefined(data);
   }
   static async createRestaurant(model: RestaurantModel) {
-    return await repo.save({
-      name: model.name,
-      location: model.location,
-      price: model.price,
-      details: model.details,
-      phone: model.phone,
-      email: model.email,
-      description: model.description,
-      imageUrl: model.image_url,
-      createdBy: model.created_by,
-      createdAt: new Date(),
-    });
+    try {
+      return await repo.save({
+        name: model.name,
+        location: model.location,
+        price: model.price,
+        details: model.details,
+        phone: model.phone,
+        email: model.email,
+        description: model.description,
+        imageUrl: "r.jpg",
+        createdBy: 1,
+        createdAt: new Date(),
+      });
+    } catch (error) {
+      console.error("Error creating restaurant:", error);
+    }
   }
   static async updateRestaurant(id: number, model: RestaurantModel) {
     const data = await this.getRestaurantById(id);

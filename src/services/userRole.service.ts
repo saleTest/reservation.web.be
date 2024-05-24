@@ -9,6 +9,6 @@ export class UserRoleService {
     const data = await UserService.getUserById(id);
     if (!data) return;
     const userRole = await repo.findOneBy({ userId: data.userId });
-    return userRole;
+    return userRole.roleId;
   }
 }

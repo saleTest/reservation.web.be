@@ -36,6 +36,12 @@ export class Bookings {
   @Column("int", { primary: true, name: "status_id", unsigned: true })
   statusId: number;
 
+  @Column("datetime", { name: "deleted_at", nullable: true })
+  deletedAt: Date | null;
+
+  @Column("datetime", { name: "updated_at", nullable: true })
+  updatedAt: Date | null;
+
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.bookings, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",

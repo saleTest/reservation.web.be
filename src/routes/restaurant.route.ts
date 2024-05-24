@@ -14,6 +14,7 @@ RestaurantRoute.get("/:id", (req, res) => {
 });
 
 RestaurantRoute.post("/", (req, res) => {
+  console.log(req.body);
   handleRequrest(res, RestaurantService.createRestaurant(req.body));
 });
 
