@@ -41,8 +41,23 @@ export async function authenticateToken(
   res: Response,
   next: Function
 ) {
-  const unprotected = ["/api/user/login", "/api/user/refresh"];
-  if (unprotected.includes(req.path)) {
+  const unprotected = [
+    "/api/user/login",
+    "/api/user/refresh",
+    "/api/restaurant",
+    "/api/top-restaurant",
+    /^\/api\/restaurant\/\d+$/,
+  ];
+
+  if (
+    unprotected.some((route) => {
+      if (typeof route === "string") {
+        return req.path === route;
+      } else {
+        return route.test(req.path);
+      }
+    })
+  ) {
     next();
     return;
   }

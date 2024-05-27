@@ -92,4 +92,34 @@ export class RestaurantService {
     data.deletedAt = new Date();
     await repo.save(data);
   }
+
+  static async getTopRankedRestaurants() {
+    console.log(123123);
+
+    return await repo.find({
+      select: {
+        restaurantId: true,
+        name: true,
+        email: true,
+        phone: true,
+        location: true,
+        details: true,
+        rating: true,
+        views: true,
+        description: true,
+        imageUrl: true,
+        price: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      where: {
+        deletedAt: IsNull(),
+      },
+    });
+    // const restaurant = await this.getAllRestaurants();
+    // const sortedRestourants = restaurant.sort((a, b) => b.rating - a.rating);
+    // const topRankedRestaurants = sortedRestourants.slice(0, 4);
+
+    // return topRankedRestaurants;
+  }
 }

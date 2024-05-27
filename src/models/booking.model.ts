@@ -12,5 +12,4 @@ export interface BookingModel {
     status: string;
   };
   statusId: number;
-  // restaurantId: number;
 }

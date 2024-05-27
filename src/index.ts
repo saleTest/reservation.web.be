@@ -9,6 +9,7 @@ import { UserRoute } from "./routes/user.router";
 import { UserRoleRoute } from "./routes/userRole.route";
 import { BookingRoute } from "./routes/booking.router";
 import { authenticateToken } from "./utils";
+import { TopRestaurantRoute } from "./routes/topRestourant.route";
 
 const app = express();
 app.use(express.json());
@@ -35,12 +36,13 @@ AppDataSource.initialize()
 // app.post("/u", async (req, res) => {
 //   res.json(await RestaurantService.createRestaurant(req.body));
 // });
-app.use("/api/restaurant", RestaurantRoute);
 
 app.use(authenticateToken);
+app.use("/api/top-restaurant", TopRestaurantRoute);
+app.use("/api/restaurant", RestaurantRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/booking", BookingRoute);
-app.use("/api/user", UserRoute);
+// app.use("/api/user", UserRoute);
 app.use("/api/userRole", UserRoleRoute);
 
 app.get("*", (req, res) => {
